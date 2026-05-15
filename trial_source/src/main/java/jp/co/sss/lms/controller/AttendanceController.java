@@ -1,6 +1,7 @@
 package jp.co.sss.lms.controller;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,31 @@ public class AttendanceController {
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
+		
+		// Task25
+		
+		// 過去の日付を取得
+		LocalDate today = LocalDate.now();
+		
+		boolean hasEmptyTrainingStartTime = false;
+		for(AttendanceManagementDto dto : attendanceManagementDtoList) {
+			
+			
+				
+				if(dto.getTrainingStartTime() == null || dto.getTrainingStartTime().isEmpty()) {
+					hasEmptyTrainingStartTime = true;
+					break;
+				}
+			
+			
+			
+		}
+		
+		if(hasEmptyTrainingStartTime) {
+			System.out.println("未入力あり");
+		}
+		
+		model.addAttribute("hasEmptyTrainingStartTime",hasEmptyTrainingStartTime);
 
 		return "attendance/detail";
 	}
