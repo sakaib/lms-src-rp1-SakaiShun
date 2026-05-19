@@ -93,14 +93,13 @@
         /*<![CDATA[*/
         
         // サーバー側でスコープ登録したBoolean値を受け取る (true または false が入る)
-        const hasEmptyTrainingStartTime = /*[[${hasEmptyTrainingStartTime}]]*/ false;
-        const hasEmptyTrainingEndTime = /*[[${hasEmptyTrainingEndTime}]]*/ false;
+        const notEnterCheck = /*[[${notEnterCheck}]]*/ false;
 
         // 画面読み込み完了時に実行
         window.addEventListener('DOMContentLoaded', function() {
             
             // trueならアラートを出す
-            if (hasEmptyTrainingStartTime || hasEmptyTrainingEndTime) {
+            if (notEnterCheck) {
                 alert("過去日の勤怠に未入力があります。");
             }
         });

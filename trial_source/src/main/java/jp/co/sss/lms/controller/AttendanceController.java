@@ -1,8 +1,6 @@
 package jp.co.sss.lms.controller;
 
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +40,7 @@ public class AttendanceController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(path = "/detail", method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model) throws ParseException {
 
 		// 勤怠一覧の取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
@@ -50,35 +48,10 @@ public class AttendanceController {
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
 		// Task25
-		// 勤怠の未入力を取得
-		boolean hasEmptyTrainingStartTime = false;
-		boolean hasEmptyTrainingEndTime = false;
-		for(AttendanceManagementDto dto : attendanceManagementDtoList) {
-			
-			// 今日の日付を取得し、isBeforeが使えるようにtrainingDateをDateからLocalDateへ変換
-			LocalDate today = LocalDate.now();
-			LocalDate pastDate = dto.getTrainingDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			
-			// 過去の日付かつ勤怠が未入力となっていたらhasEmptyTrainingStartTimeをtrueへ変更 
-			if( pastDate.isBefore(today) &&
-				(dto.getTrainingStartTime() == null || dto.getTrainingStartTime().isEmpty()) ) {
-				hasEmptyTrainingStartTime = true;
-				break;
-				}
-			
-			// 過去の日付かつ勤怠が未入力となっていたらhasEmptyTrainingEndTimeをtrueへ変更
-			if( pastDate.isBefore(today) &&
-					(dto.getTrainingEndTime() == null || dto.getTrainingEndTime().isEmpty()) ) {
-					hasEmptyTrainingEndTime = true;
-					break;
-				}
-		}
+		//notEnterCheckの値を取得しビューへ送信
+		boolean notEnterCheck = studentAttendanceService.notEnterCheck();
+		model.addAttribute("notEnterCheck", notEnterCheck);
 		
-		// attendance/detailでダイアログがでるようにmodelに追加
-		model.addAttribute("hasEmptyTrainingStartTime",hasEmptyTrainingStartTime);
-		model.addAttribute("hasEmptyTrainingEndTime",hasEmptyTrainingEndTime);
-		// Task25 end
-
 		return "attendance/detail";
 	}
 

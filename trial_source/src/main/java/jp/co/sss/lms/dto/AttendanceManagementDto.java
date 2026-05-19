@@ -1,7 +1,5 @@
 package jp.co.sss.lms.dto;
 
-import java.time.LocalDate;
-
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
@@ -23,8 +21,5 @@ public class AttendanceManagementDto extends StudentAttendanceDto {
 	private String blankTimeValue;
 	/** セクション名 */
 	private String sectionName;
-	
-	// Task25
-	private LocalDate pastDate;
 
 }
