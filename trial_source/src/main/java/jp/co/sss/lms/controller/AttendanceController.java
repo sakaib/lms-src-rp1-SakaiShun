@@ -47,7 +47,7 @@ public class AttendanceController {
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
-		// Task25
+		// 坂井瞬 – Task.25
 		//notEnterCheckの値を取得しビューへ送信
 		boolean notEnterCheck = studentAttendanceService.notEnterCheck();
 		model.addAttribute("notEnterCheck", notEnterCheck);

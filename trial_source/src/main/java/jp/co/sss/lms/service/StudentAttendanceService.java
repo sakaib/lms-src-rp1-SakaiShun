@@ -335,7 +335,13 @@ public class StudentAttendanceService {
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
 	}
 	
-	// Task25 過去日の未入力チェック
+	/**
+	 * 過去日の未入力チェック
+	 * @author 坂井瞬 – Task.25
+	 * @param 無し
+	 * @return boolean
+	 * @throws ParseException
+	 */
 	public boolean notEnterCheck() throws ParseException {
 		
 		// 今日の日付を取得
@@ -345,7 +351,7 @@ public class StudentAttendanceService {
 		Date trainingDate = sdf.parse(StringTrainingDate);
 		
 		// 過去の未入力の勤怠の数をintNotEnterCountに保存
-		Integer intNotEnterCount = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), trainingDate,Constants.DB_FLG_FALSE);
+		Integer intNotEnterCount = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(),Constants.DB_FLG_FALSE, trainingDate);
 		
 		// 0を超過しているならtrueを返す
 		return 0 < intNotEnterCount;

@@ -86,8 +86,8 @@
 		WHERE student_attendance_id = #{studentAttendanceId}
 	</update>
 	
-	<!-- Task25 -->
-	<select id="notEnterCount" resultType="Integer"> <!-- parameterType="jp.co.sss.lms.entity.TStudentAttendance" -->
+	<!-- 坂井瞬 – Task.25 -->
+	<select id="notEnterCount" resultType="Integer">
 		SELECT COUNT(*)
 		FROM
 			t_student_attendance
