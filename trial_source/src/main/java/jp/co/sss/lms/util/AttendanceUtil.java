@@ -131,6 +131,71 @@ public class AttendanceUtil {
 		}
 		return map;
 	}
+	
+	/**
+	 * 出勤時間取得(hour)
+	 * 
+	 * @author 坂井 作成中 Task.26
+	 * @return map
+	 */
+	public LinkedHashMap<Integer, String> getHourMap() {
+		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+		map.put(null, "");
+		for (int i = 0; i < 12; i++) {
+	//		int hour = i / 60;
+	//		int minute = i % 60;
+			String time = String.format("%02d:00",i);
+	
+	//		if (hour == 0) {
+	//			time = minute + "分";
+	
+	//		} else if (minute == 0) {
+	//			time = hour + "時間";
+	//		} else {
+	//			time = hour + "時" + minute + "分";
+	//		}
+	
+			map.put(i, time);
+	
+			//i++;
+	
+		}
+		return map;
+	}
+	
+	/**
+	 * 出勤時間取得(minute)
+	 * 
+	 * @author 坂井 作成中 Task.26
+	 * @return map
+	 */
+	public LinkedHashMap<Integer, String> getMinuteMap() {
+		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+		map.put(null, "");
+		for (int i = 0; i < 12; i++) {
+	//		int hour = i / 60;
+	//		int minute = i % 60;
+			String time = String.format("%02d:00",i);
+	
+			map.put(i, time);
+	
+		}
+		return map;
+	}
+	
+	/** 作成中
+	 * ●●時間を時(hour)と分(minute)に変換 坂井
+	 *
+	 * @param min 中抜け時間
+	 * @return 時(hour)と分(minute)に変換したクラス
+	 */
+	//public TrainingTime calcTrainingStartTime(int min) {
+	//	int hour = min / 60;
+	//	int minute = min % 60;
+	//	TrainingTime total = new TrainingTime(hour, minute);
+	//	return total;
+	//}
+	
 
 	/**
 	 * 研修日の判定
