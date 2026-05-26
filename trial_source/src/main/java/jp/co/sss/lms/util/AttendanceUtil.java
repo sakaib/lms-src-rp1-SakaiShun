@@ -141,10 +141,10 @@ public class AttendanceUtil {
 	public LinkedHashMap<Integer, String> getHourMap() {
 		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
 		map.put(null, "");
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 24; i++) {
 	//		int hour = i / 60;
 	//		int minute = i % 60;
-			String time = String.format("%02d:00",i);
+			String time = String.format("%02d",i);
 	
 	//		if (hour == 0) {
 	//			time = minute + "分";
@@ -172,15 +172,61 @@ public class AttendanceUtil {
 	public LinkedHashMap<Integer, String> getMinuteMap() {
 		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
 		map.put(null, "");
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 60; i++) {
 	//		int hour = i / 60;
 	//		int minute = i % 60;
-			String time = String.format("%02d:00",i);
+			String time = String.format("%02d",i);
 	
 			map.put(i, time);
 	
 		}
 		return map;
+	}
+	
+	//getHour　StringUtil.isBlank()　あるかチェック　true;　なかったらnull　return
+	//値があったら　変換する　文字列切り出し　サブストリング　00:00　最初の二文字切り出し　perseInt
+	
+	public Integer getHour(String strGetHour) {
+		if(strGetHour.isBlank()) {
+			return null;
+		} else {
+			String subStr = strGetHour.substring(0, 2);
+			int intGetHour = Integer.parseInt(subStr);
+			return intGetHour;
+		}
+		
+		//String subStr = strGetHour.substring(0, 2);
+		
+		//if(subStr.isBlank()) {
+		//	return null;
+		//} 
+		
+		//int intGetHour = Integer.parseInt(subStr);
+		//return intGetHour;
+		
+	}
+	
+	public Integer getMinute(String strGetMinute) {
+		if(strGetMinute.isBlank()) {
+			return null;
+		} else {
+			String subStr = strGetMinute.substring(strGetMinute.length() - 2);
+			int intGetMinute = Integer.parseInt(subStr);
+			return intGetMinute;
+		}
+		
+		//String subStr = strGetMinute.substring(strGetMinute.length() - 2);
+		
+		//if(subStr.isBlank()) {
+		//	return null;
+		//} else {
+		//	int intGetMinute = Integer.parseInt(subStr);
+		//	return intGetMinute;
+		//}
+		
+		//int intGetMinute = Integer.parseInt(subStr);
+		//return intGetMinute;
+		
 	}
 	
 	/** 作成中

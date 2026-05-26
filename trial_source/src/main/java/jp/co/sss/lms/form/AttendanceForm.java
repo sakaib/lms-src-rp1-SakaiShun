@@ -32,7 +32,7 @@ public class AttendanceForm {
 	
 	// 坂井瞬 – Task.26
 	//private LinkedHashMap<Integer, String> trainingHourTimes;
-	private LinkedHashMap<Integer, String> HourMaps;
+	private LinkedHashMap<Integer, String> hourMaps;
 	private LinkedHashMap<Integer, String> minuteMaps;
 	
 	/** 日次の勤怠フォームリスト */

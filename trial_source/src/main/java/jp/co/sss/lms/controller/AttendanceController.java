@@ -140,6 +140,10 @@ public class AttendanceController {
 
 		// 更新
 		String message = studentAttendanceService.update(attendanceForm);
+		
+		//Task26テスト
+		studentAttendanceService.formatConversion(attendanceForm);
+		
 		model.addAttribute("message", message);
 		// 一覧の再取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService

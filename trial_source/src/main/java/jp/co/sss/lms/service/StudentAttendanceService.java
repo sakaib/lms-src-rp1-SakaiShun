@@ -244,38 +244,16 @@ public class StudentAttendanceService {
 					.setStudentAttendanceId(attendanceManagementDto.getStudentAttendanceId());
 			dailyAttendanceForm
 					.setTrainingDate(dateUtil.toString(attendanceManagementDto.getTrainingDate()));
-			//dailyAttendanceForm
-			//		.setTrainingStartTime(attendanceManagementDto.getTrainingStartTime());
+			dailyAttendanceForm
+					.setTrainingStartTime(attendanceManagementDto.getTrainingStartTime());
 			
 			//Task26
-			//dailyAttendanceForm.setTrainingStartTime(attendanceManagementDto.getTrainingStartTimeValue());
-			if (attendanceManagementDto.getTrainingStartTime() != null) {
-				
-				dailyAttendanceForm.setHourMapValue(attendanceManagementDto.getTrainingStartTime());
-				
-				dailyAttendanceForm.setHourMapValue(
-						String.valueOf(
-								//attendanceUtil.calcTrainingStartTime(
-										attendanceManagementDto.getTrainingStartTime()
-								//)
-						)
-				);
-						
-			}
+			dailyAttendanceForm.setTrainingStartTimeHour(attendanceUtil.getHour(attendanceManagementDto.getTrainingStartTime()));
+			dailyAttendanceForm.setTrainingStartTimeMinute(attendanceUtil.getMinute(attendanceManagementDto.getTrainingStartTime()));
+			//dailyAttendanceForm.setTrainingEndTimeHour(attendanceUtil.getHour(attendanceManagementDto.getTrainingEndTime()));
+			//dailyAttendanceForm.setTrainingEndTimeMinute(attendanceUtil.getMinute(attendanceManagementDto.getTrainingEndTime()));
+			//デイリーアテンダンス　
 			
-			if (attendanceManagementDto.getTrainingStartTime() != null) {
-				
-				dailyAttendanceForm.setMinuteMapValue(attendanceManagementDto.getTrainingStartTime());
-				
-				dailyAttendanceForm.setMinuteMapValue(
-						String.valueOf(
-								//attendanceUtil.calcTrainingStartTime(
-										attendanceManagementDto.getTrainingStartTime()
-								//)
-						)
-				);
-						
-			}
 			
 			
 			
@@ -312,8 +290,14 @@ public class StudentAttendanceService {
 	public void formatConversion(AttendanceForm attendanceForm) {
 		
 		for(DailyAttendanceForm dailyAttendanceForm : attendanceForm.getAttendanceList()) {
-			if(dailyAttendanceForm.getTrainingStartTime() != null) {
-				dailyAttendanceForm.setTrainingStartTime(String.format("%02d:%02d",dailyAttendanceForm.getTrainingStartTime()));
+			if(dailyAttendanceForm.getTrainingStartTimeHour() != null && dailyAttendanceForm.getTrainingStartTimeMinute() != null) {
+				//String strHour = String.format("%02d",dailyAttendanceForm.getTrainingStartTimeHour());
+				//String strMinute = String.format("%02d",dailyAttendanceForm.getTrainingStartTimeMinute());
+				//dailyAttendanceForm.setTrainingStartTime(strHour + ":" + strMinute);
+				Integer trainingStartTimeHour = dailyAttendanceForm.getTrainingStartTimeHour();
+				Integer trainingStartTimeMinute = dailyAttendanceForm.getTrainingStartTimeMinute();
+				String timeStr = String.format("%02d:%02d", trainingStartTimeHour, trainingStartTimeMinute);
+				dailyAttendanceForm.setTrainingStartTime(timeStr);
 			}
 		}
 	}
