@@ -133,59 +133,40 @@ public class AttendanceUtil {
 	}
 	
 	/**
-	 * 出勤時間取得(hour)
-	 * 
-	 * @author 坂井 作成中 Task.26
+	 * 時間のプルダウンマップを生成
+	 * @author 坂井 – Task.26
 	 * @return map
 	 */
 	public LinkedHashMap<Integer, String> getHourMap() {
 		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
 		map.put(null, "");
 		for (int i = 0; i < 24; i++) {
-	//		int hour = i / 60;
-	//		int minute = i % 60;
 			String time = String.format("%02d",i);
-	
-	//		if (hour == 0) {
-	//			time = minute + "分";
-	
-	//		} else if (minute == 0) {
-	//			time = hour + "時間";
-	//		} else {
-	//			time = hour + "時" + minute + "分";
-	//		}
-	
 			map.put(i, time);
-	
-			//i++;
-	
 		}
 		return map;
 	}
 	
 	/**
-	 * 出勤時間取得(minute)
-	 * 
-	 * @author 坂井 作成中 Task.26
+	 * 分のプルダウンマップを生成
+	 * @author 坂井 – Task.26
 	 * @return map
 	 */
 	public LinkedHashMap<Integer, String> getMinuteMap() {
 		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
 		map.put(null, "");
 		for (int i = 0; i < 60; i++) {
-	//		int hour = i / 60;
-	//		int minute = i % 60;
 			String time = String.format("%02d",i);
-	
 			map.put(i, time);
-	
 		}
 		return map;
 	}
 	
-	//getHour　StringUtil.isBlank()　あるかチェック　true;　なかったらnull　return
-	//値があったら　変換する　文字列切り出し　サブストリング　00:00　最初の二文字切り出し　perseInt
-	
+	/**
+	 * 時間(時)の切り出し
+	 * @author 坂井 – Task.26
+	 * @return null intGetHour
+	 */
 	public Integer getHour(String strGetHour) {
 		if(strGetHour.isBlank()) {
 			return null;
@@ -194,18 +175,13 @@ public class AttendanceUtil {
 			int intGetHour = Integer.parseInt(subStr);
 			return intGetHour;
 		}
-		
-		//String subStr = strGetHour.substring(0, 2);
-		
-		//if(subStr.isBlank()) {
-		//	return null;
-		//} 
-		
-		//int intGetHour = Integer.parseInt(subStr);
-		//return intGetHour;
-		
 	}
 	
+	/**
+	 * 時間(分)の切り出し
+	 * @author 坂井 – Task.26
+	 * @return null intGetMinute
+	 */
 	public Integer getMinute(String strGetMinute) {
 		if(strGetMinute.isBlank()) {
 			return null;
@@ -214,34 +190,7 @@ public class AttendanceUtil {
 			int intGetMinute = Integer.parseInt(subStr);
 			return intGetMinute;
 		}
-		
-		//String subStr = strGetMinute.substring(strGetMinute.length() - 2);
-		
-		//if(subStr.isBlank()) {
-		//	return null;
-		//} else {
-		//	int intGetMinute = Integer.parseInt(subStr);
-		//	return intGetMinute;
-		//}
-		
-		//int intGetMinute = Integer.parseInt(subStr);
-		//return intGetMinute;
-		
 	}
-	
-	/** 作成中
-	 * ●●時間を時(hour)と分(minute)に変換 坂井
-	 *
-	 * @param min 中抜け時間
-	 * @return 時(hour)と分(minute)に変換したクラス
-	 */
-	//public TrainingTime calcTrainingStartTime(int min) {
-	//	int hour = min / 60;
-	//	int minute = min % 60;
-	//	TrainingTime total = new TrainingTime(hour, minute);
-	//	return total;
-	//}
-	
 
 	/**
 	 * 研修日の判定

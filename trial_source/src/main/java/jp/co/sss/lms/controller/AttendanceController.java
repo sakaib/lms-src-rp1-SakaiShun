@@ -139,10 +139,9 @@ public class AttendanceController {
 			throws ParseException {
 
 		// 更新
-		String message = studentAttendanceService.update(attendanceForm);
-		
-		//Task26テスト
+		// 坂井瞬 – Task.26
 		studentAttendanceService.formatConversion(attendanceForm);
+		String message = studentAttendanceService.update(attendanceForm);
 		
 		model.addAttribute("message", message);
 		// 一覧の再取得

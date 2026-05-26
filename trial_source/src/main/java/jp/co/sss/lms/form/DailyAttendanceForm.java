@@ -25,21 +25,15 @@ public class DailyAttendanceForm {
 	/** 中抜け時間（画面表示用） */
 	private String blankTimeValue;
 	
-	// 坂井瞬 – Task.○○
-	/** 出勤時間（画面表示用） */
+	// 坂井瞬 – Task.26
+	/** 出勤時間（時）（画面表示用） */
 	private Integer trainingStartTimeHour;
+	/** 出勤時間（分）（画面表示用） */
 	private Integer trainingStartTimeMinute;
+	/** 退勤時間（時）（画面表示用） */
 	private Integer trainingEndTimeHour;
+	/** 退勤時間（分）（画面表示用） */
 	private Integer trainingEndTimeMinute;
-	
-	//private String trainingHourTime;
-	//private String trainingHourTimeValue;
-	//private String trainingStartTimeValue;
-	//private Integer hourMap;
-	//private String hourMapValue;
-	//private Integer minuteMap;
-	//private String minuteMapValue;
-	
 	
 	/** ステータス */
 	private String status;
