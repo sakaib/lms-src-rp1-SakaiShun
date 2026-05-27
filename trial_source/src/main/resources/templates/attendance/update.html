@@ -27,6 +27,7 @@
 						<tr>
 							<th class="w140">日付</th>
 							<th class="w300">コース内容</th>
+							<th class="w60"></th>
 							<th class="w180" colspan="3">出勤</th>
 							<th class="w180" colspan="3">退勤</th>
 							<th class="w80">中抜け時間</th>
@@ -48,7 +49,13 @@
 								<td class="w140">[[${dailyAttendanceForm.dispTrainingDate}]]</td>
 								<td class="w300">[[${dailyAttendanceForm.sectionName}]]</td>
 								
-								<!-- 坂井瞬 – Task.26 --> 
+								<!-- 坂井瞬 – Task.28 -->
+								<td class="w60">
+									<input type="button" th:name="|attendanceList[${stat.index}].regularTime|" th:value="定時" th:onclick="setRegularTime('09:00','18:00')" class="form-control btn btn-success default-button"></input>
+									<!-- th:value="${dailyAttendanceForm.regularTime}"-->
+								</td>
+								
+								<!-- 坂井瞬 – Task.26 -->
 								<td class="w70">
 									<select th:name="|attendanceList[${stat.index}].trainingStartTimeHour|" class="form-control">
 										<option th:each="hourMap : ${attendanceForm.hourMaps}" th:value="${hourMap.key}" th:inlne="text" class="form-control" 
@@ -104,6 +111,11 @@
 			</form>
 		</div>
 	</div>
+	
+	<!-- 坂井瞬 – Task.28 -->
+	<script>
+		
+	</script>
 
 </body>
 </html>
