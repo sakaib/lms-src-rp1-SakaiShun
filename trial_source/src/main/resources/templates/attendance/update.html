@@ -51,33 +51,32 @@
 								
 								<!-- 坂井瞬 – Task.28 -->
 								<td class="w60">
-									<input type="button" th:name="|attendanceList[${stat.index}].regularTime|" th:value="定時" th:onclick="setRegularTime('09:00','18:00')" class="form-control btn btn-success default-button"></input>
-									<!-- th:value="${dailyAttendanceForm.regularTime}"-->
+									<input type="button" th:value="定時" th:onclick="'setRegularTime(' + ${stat.index} + ')'" class="form-control btn btn-success default-button"></input>
 								</td>
 								
 								<!-- 坂井瞬 – Task.26 -->
 								<td class="w70">
-									<select th:name="|attendanceList[${stat.index}].trainingStartTimeHour|" class="form-control">
+									<select th:id="'trainingStartTimeHour' + ${stat.index}" th:name="|attendanceList[${stat.index}].trainingStartTimeHour|" class="form-control">
 										<option th:each="hourMap : ${attendanceForm.hourMaps}" th:value="${hourMap.key}" th:inlne="text" class="form-control" 
 											th:selected="${hourMap.key == dailyAttendanceForm.trainingStartTimeHour}">[[${hourMap.value}]]</option>
 									</select>
 								</td>
 								<td>:</td>
 								<td class="w70">
-									<select th:name="|attendanceList[${stat.index}].trainingStartTimeMinute|" class="form-control">
+									<select th:id="'trainingStartTimeMinute' + ${stat.index}" th:name="|attendanceList[${stat.index}].trainingStartTimeMinute|" class="form-control">
 										<option th:each="minuteMap : ${attendanceForm.minuteMaps}" th:value="${minuteMap.key}" th:inlne="text" class="form-control" 
 											th:selected="${minuteMap.key == dailyAttendanceForm.trainingStartTimeMinute}">[[${minuteMap.value}]]</option>
 									</select>
 								</td>
 								<td class="w70">
-									<select th:name="|attendanceList[${stat.index}].trainingEndTimeHour|" class="form-control">
+									<select th:id="'trainingEndTimeHour' + ${stat.index}" th:name="|attendanceList[${stat.index}].trainingEndTimeHour|" class="form-control">
 										<option th:each="hourMap : ${attendanceForm.hourMaps}" th:value="${hourMap.key}" th:inlne="text" class="form-control" 
 											th:selected="${hourMap.key == dailyAttendanceForm.trainingEndTimeHour}">[[${hourMap.value}]]</option>
 									</select>
 								</td>
 								<td>:</td>
 								<td class="w70">
-									<select th:name="|attendanceList[${stat.index}].trainingEndTimeMinute|" class="form-control">
+									<select th:id="'trainingEndTimeMinute' + ${stat.index}" th:name="|attendanceList[${stat.index}].trainingEndTimeMinute|" class="form-control">
 										<option th:each="minuteMap : ${attendanceForm.minuteMaps}" th:value="${minuteMap.key}" th:inlne="text" class="form-control" 
 											th:selected="${minuteMap.key == dailyAttendanceForm.trainingEndTimeMinute}">[[${minuteMap.value}]]</option>
 									</select>
@@ -114,7 +113,17 @@
 	
 	<!-- 坂井瞬 – Task.28 -->
 	<script>
-		
+		function setRegularTime(index){
+			const startTimeHourInput = document.getElementById('trainingStartTimeHour' + index);
+			const startTimeMinuteInput = document.getElementById('trainingStartTimeMinute' + index);
+			const endTimeHourInput = document.getElementById('trainingEndTimeHour' + index);
+			const endTimeMinuteInput = document.getElementById('trainingEndTimeMinute' + index);
+			
+			if(startTimeHourInput)startTimeHourInput.value = '9';
+			if(startTimeMinuteInput)startTimeMinuteInput.value = '0';
+			if(endTimeHourInput)endTimeHourInput.value = '18';
+			if(endTimeMinuteInput)endTimeMinuteInput.value = '0';
+		}
 	</script>
 
 </body>
